@@ -63,7 +63,7 @@ function createOneNumber(){
 	}
 	var number = Math.random() < 0.5?2:4
 	board[randomX][randomY] = number
-	theAnimatShowNumber()
+	theAnimatShowNumber(randomX, randomY, number)
 }
 
 
