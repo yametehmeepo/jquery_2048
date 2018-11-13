@@ -38,6 +38,10 @@ header h1{
 	border-radius: 6px;
 	background: #957a69;
 	color: #fff;
+	transition: opacity .3s ease;
+}
+#newgamebtn:hover{
+	opacity: 0.7;
 }
 header p{
 	font-size: 16px;
@@ -59,6 +63,14 @@ header p{
 	height: 100px;
 	border-radius: 5px;
 	background: #cebfb3;
+}
+.container .numbercell{
+	position: absolute;
+	font-family: 'Arial';
+	font-size: 32px;
+	line-height: 100px;
+	text-align: center;
+	font-weight: bold;
 }
 
 
