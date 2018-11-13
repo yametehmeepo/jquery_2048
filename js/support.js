@@ -1,8 +1,10 @@
 
+//获取left和top
 function getLeftTop(i, j){
 	return {left: 20 + 120 * j, top: 20 + 120 * i }
 }
 
+//获取背景颜色
 function getBackgroundColor(number){
 	switch (number){
 		case 2: 
@@ -47,6 +49,7 @@ function getBackgroundColor(number){
 	}
 }
 
+//获取文字颜色
 function getColor(number){
 	if(number <= 4){
 		return '#776e65'
@@ -54,6 +57,7 @@ function getColor(number){
 	return '#fff'
 }
 
+//获取文字大小
 function getFontSize(number){
 	var l = String(number).length
 	switch(l){
@@ -72,6 +76,7 @@ function getFontSize(number){
 	}
 }
 
+//判断棋盘是否有空位置添加数字
 function nospace(board){
 	for(var i = 0; i < 4; i++)
 		for(var j = 0; j < 4; j++)
@@ -81,8 +86,27 @@ function nospace(board){
 	return true
 }
 
+//可以向左移动
+function canMoveLeft(board){
+	for(var i = 0; i < 4; i++)
+		for(var j = 1; j < 4; j++)
+			if(board[i][j] != 0){
+				if(board[i][j - 1] == 0 || board[i][j - 1] == board[i][j]){//判断是否能够向左移动
+					return true
+				}
+			}
+	return false
+}
 
-
+//无障碍物
+function noObstacle(row, col1, col2, board){
+	for(var j = col1 + 1 ; j < col2; j++ ){
+		if(board[row][j] != 0){
+			return false
+		}
+	}
+	return true
+}
 
 
 
