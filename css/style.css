@@ -67,10 +67,11 @@ header p{
 .container .numbercell{
 	position: absolute;
 	font-family: 'Arial';
-	font-size: 32px;
+	font-size: 60px;
 	line-height: 100px;
 	text-align: center;
 	font-weight: bold;
+	border-radius: 5px;
 }
 
 

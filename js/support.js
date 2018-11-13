@@ -54,8 +54,32 @@ function getColor(number){
 	return '#fff'
 }
 
+function getFontSize(number){
+	var l = String(number).length
+	switch(l){
+		case 1: 
+			return '60px';
+			break;
+		case 2: 
+			return '56px';
+			break;
+		case 3: 
+			return '50px';
+			break;
+		case 4: 
+			return '40px';
+			break;
+	}
+}
 
-
+function nospace(board){
+	for(var i = 0; i < 4; i++)
+		for(var j = 0; j < 4; j++)
+			if(board[i][j] == 0){
+				return false
+			}
+	return true
+}
 
 
 
