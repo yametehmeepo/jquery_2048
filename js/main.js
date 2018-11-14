@@ -3,7 +3,7 @@ var hasCombine = new Array()
 var score = 0
 var lastClickTime = 0 //上一次按键时间
 var isPressDown = false
-
+var lastScore = 0
 $(function(){
 	newgame()
 	$(document).on('keydown', function(e){
@@ -91,7 +91,7 @@ function init(){
 	updateNumberCell()
 	//重置分数
 	score = 0
-	updateScore(score)
+	$('#score').text(score)
 }
 
 //更新numbercell
@@ -165,14 +165,17 @@ function moveLeft(){
 						board[i][k] += board[i][j]
 						board[i][j] = 0
 						score += board[i][k]
-						updateScore(score)
+						
 						hasCombine[i][k] = true
 						continue
 					}
 				}
 			}
 
-	
+	if(lastScore != score){
+		updateScore(score)
+		lastScore = score
+	}
 	return true
 }
 
@@ -198,14 +201,17 @@ function moveRight(){
 						board[i][k] += board[i][j]
 						board[i][j] = 0
 						score += board[i][k]
-						updateScore(score)
+						
 						hasCombine[i][k] = true
 						continue
 					}
 				}
 			}
 
-
+	if(lastScore != score){
+		updateScore(score)
+		lastScore = score
+	}
 	return true
 }
 
@@ -231,13 +237,18 @@ function moveUp(){
 						board[k][j] += board[i][j]
 						board[i][j] = 0
 						score += board[k][j]
-						updateScore(score)
+						
 						hasCombine[k][j] = true
 						continue
 					}
 				}
 			}
 
+
+	if(lastScore != score){
+		updateScore(score)
+		lastScore = score
+	}
 
 	return true
 }
@@ -264,14 +275,17 @@ function moveDown(){
 						board[k][j] += board[i][j]
 						board[i][j] = 0
 						score += board[k][j]
-						updateScore(score)
+						
 						hasCombine[k][j] = true
 						continue
 					}
 				}
 			}
 
-
+	if(lastScore != score){
+		updateScore(score)
+		lastScore = score
+	}
 	return true
 }
 

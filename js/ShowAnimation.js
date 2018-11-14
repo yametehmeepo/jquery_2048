@@ -29,7 +29,20 @@ function theAnimateMoveNumber(fromX, fromY, toX, toY){
 
 //更新分数
 function updateScore(score){
-	$('#score').text(score)
+	
+	$('#score').animate({
+		'top': '-25px',
+		'opacity': 0
+	}, 100, 'swing', function(){
+		$('#score').text(score)
+		$('#score').css({
+			'top': '25px'
+		})
+		$('#score').animate({
+			'top': 0,
+			'opacity': 1
+		}, 50)
+	})	
 }
 
 

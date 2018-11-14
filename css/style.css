@@ -47,6 +47,12 @@ header p{
 	font-size: 16px;
 	margin: 20px 0;
 }
+#score{
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	text-align: right;
+}
 .container{
 	position: relative;
 	width: 500px;
