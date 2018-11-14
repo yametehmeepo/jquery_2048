@@ -27,8 +27,10 @@ function theAnimateMoveNumber(fromX, fromY, toX, toY){
 	}, 200)
 }
 
-
-
+//更新分数
+function updateScore(score){
+	$('#score').text(score)
+}
 
 
 

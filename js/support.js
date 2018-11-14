@@ -77,12 +77,20 @@ function getFontSize(number){
 }
 
 //判断棋盘是否有空位置添加数字
-function nospace(board){
+function noSpace(board){
 	for(var i = 0; i < 4; i++)
 		for(var j = 0; j < 4; j++)
 			if(board[i][j] == 0){
 				return false
 			}
+	return true
+}
+
+//判断是否可以移动
+function noMove(board){
+	if(canMoveLeft(board) || canMoveRight(board) || canMoveUp(board) || canMoveDown(board)){
+		return false
+	}
 	return true
 }
 
@@ -98,10 +106,60 @@ function canMoveLeft(board){
 	return false
 }
 
-//无障碍物
-function noObstacle(row, col1, col2, board){
+//可以向右移动
+function canMoveRight(board){
+	for(var i = 0; i < 4; i++)
+		for(var j = 0; j < 3; j++)
+			if(board[i][j] != 0){
+				if(board[i][j + 1] == 0 || board[i][j + 1] == board[i][j]){//判断是否能够向右移动
+					return true
+				}
+			}
+	return false
+}
+
+//可以向上移动
+function canMoveUp(board){
+	for(var i = 1; i < 4; i++)
+		for(var j = 0; j < 4; j++)
+			if(board[i][j] != 0){
+				if(board[i - 1][j] == 0 || board[i - 1][j] == board[i][j]){//判断是否能够向上移动
+					return true
+				}
+			}
+
+	return false
+}
+
+//可以向下移动
+function canMoveDown(board){
+	for(var i = 0; i < 3; i++)
+		for(var j = 0; j < 4; j++)
+			if(board[i][j] != 0){
+				if(board[i + 1][j] == 0 || board[i + 1][j] == board[i][j]){//判断是否能够向上移动
+					return true
+				}
+			}
+
+	return false
+}
+
+
+
+//横向无障碍物
+function noObstacleHorizontal(row, col1, col2, board){
 	for(var j = col1 + 1 ; j < col2; j++ ){
 		if(board[row][j] != 0){
+			return false
+		}
+	}
+	return true
+}
+
+//纵向无障碍物
+function noObstacleVertical(col, row1, row2, board){
+	for(var i = row1 + 1 ; i < row2; i++ ){
+		if(board[i][col] != 0){
 			return false
 		}
 	}
