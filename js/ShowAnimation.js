@@ -1,6 +1,7 @@
 //显示数字
 function theAnimateShowNumber(i, j, num){
 	var thenumbercell = $('#number-cell-' + i + '-' + j)
+	var cellW = (width - padding*5)/4
 	var v = getLeftTop(i, j)
 	var fontSize = getFontSize(num)
 	thenumbercell.css({
@@ -10,8 +11,9 @@ function theAnimateShowNumber(i, j, num){
 	})
 	thenumbercell.text(num)
 	thenumbercell.animate({
-		'width': '100px',
-		'height': '100px',
+		'width': cellW,
+		'height': cellW,
+		'line-height': cellW + 'px',
 		'left': v.left,
 		'top': v.top,
 	}, 50)

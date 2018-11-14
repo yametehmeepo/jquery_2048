@@ -4,7 +4,10 @@ var score = 0
 var lastClickTime = 0 //上一次按键时间
 var isPressDown = false
 var lastScore = 0
+var width, padding
+
 $(function(){
+	
 	newgame()
 	$(document).on('keydown', function(e){
 		//console.log(e.keyCode)
@@ -70,6 +73,18 @@ function newgame(){
 
 //初始化
 function init(){
+	var boxWidth = $(window).width()
+	padding = boxWidth > 540 ? 20 : 10
+	width = boxWidth > 540 ? 500 : boxWidth - 20
+	var itemW = (width - 5*padding)/4
+	$('.container').css({
+		width: width,
+		height: width
+	})
+	$('.container .item').css({
+		width: itemW,
+		height: itemW
+	})
 	//初始化棋盘
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
@@ -102,13 +117,15 @@ function updateNumberCell(){
 			$('.container').append($('<div class="numbercell" id="number-cell-' + i + '-' + j +'"></div>'))
 			var thenumbercell = $('#number-cell-' + i + '-' + j)
 			var v = getLeftTop(i, j)
+			var cellW = (width - padding*5)/4
 			if(board[i][j] != 0){
 				var fontSize = getFontSize(board[i][j])
 				thenumbercell.css({
-					'width': '100px',
-					'height': '100px',
+					'width': cellW,
+					'height': cellW,
 					'left': v.left,
 					'top': v.top,
+					'line-height': cellW + 'px',
 					'font-size': fontSize,
 					'background-color': getBackgroundColor(board[i][j]),
 					'color': getColor(board[i][j])
@@ -118,8 +135,8 @@ function updateNumberCell(){
 				thenumbercell.css({
 					'width': 0,
 					'height': 0,
-					'left': v.left + 50,
-					'top': v.top + 50
+					'left': v.left + (width - padding*5)/8,
+					'top': v.top + (width - padding*5)/8
 				})
 			}
 			hasCombine[i][j] = false

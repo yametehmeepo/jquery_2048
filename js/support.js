@@ -1,7 +1,7 @@
 
 //获取left和top
 function getLeftTop(i, j){
-	return {left: 20 + 120 * j, top: 20 + 120 * i }
+	return {left: padding + ((width - padding*5)/4 + padding) * j, top: padding + ((width - padding*5)/4 + padding) * i }
 }
 
 //获取背景颜色
@@ -46,6 +46,18 @@ function getBackgroundColor(number){
 		case 8192: 
 			return '#93c';
 			break;
+		case 16384: 
+			return '#f67c5f';
+			break;	
+		case 32768: 
+			return '#f65e3b';
+			break;
+		case 65536: 
+			return '#edcf72';
+			break;
+		case 131072: 
+			return '#edcc61';
+			break;
 	}
 }
 
@@ -60,18 +72,25 @@ function getColor(number){
 //获取文字大小
 function getFontSize(number){
 	var l = String(number).length
+	var s = ((width - padding*5)/4)/100
 	switch(l){
 		case 1: 
-			return '60px';
+			return 60*s;
 			break;
 		case 2: 
-			return '56px';
+			return 56*s;
 			break;
 		case 3: 
-			return '50px';
+			return 50*s;
 			break;
 		case 4: 
-			return '40px';
+			return 40*s;
+			break;
+		case 5: 
+			return 30*s;
+			break;
+		case 6: 
+			return 26*s;
 			break;
 	}
 }
