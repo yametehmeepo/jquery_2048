@@ -86,11 +86,11 @@ function init(){
 			hasCombine[i][j] = false
 		}
 	}
-	console.log(board, hasCombine)
 	//更新numbercell
 	updateNumberCell()
 	//重置分数
 	score = 0
+	lastScore = 0
 	$('#score').text(score)
 }
 
@@ -132,12 +132,22 @@ function createOneNumber(){
 	if(noSpace(board)){
 		return false
 	}
-	var randomX = parseInt(Math.floor(Math.random() * 4))
-	var randomY = parseInt(Math.floor(Math.random() * 4))
-	while(board[randomX][randomY] != 0){
-		randomX = parseInt(Math.floor(Math.random() * 4))
-		randomY = parseInt(Math.floor(Math.random() * 4))
-	}
+	var available = []
+	for(var i = 0; i < 4; i++)
+		for(var j = 0; j < 4; j++)
+			if(board[i][j] == 0){
+				available.push([i, j])
+			}
+
+	var randomAvailableIndex = parseInt(Math.floor(Math.random() * available.length))
+	var randomX = available[randomAvailableIndex][0]
+	var randomY = available[randomAvailableIndex][1]
+	// var randomX = parseInt(Math.floor(Math.random() * 4))
+	// var randomY = parseInt(Math.floor(Math.random() * 4))
+	// while(board[randomX][randomY] != 0){
+	// 	randomX = parseInt(Math.floor(Math.random() * 4))
+	// 	randomY = parseInt(Math.floor(Math.random() * 4))
+	// }
 	var number = Math.random() < 0.5?2:4
 	board[randomX][randomY] = number
 	theAnimateShowNumber(randomX, randomY, number)
