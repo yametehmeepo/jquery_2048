@@ -4,7 +4,7 @@ var score = 0
 var lastClickTime = 0 //上一次按键时间
 var isPressDown = false
 var lastScore = 0
-var width, padding
+var width, padding, startX, startY
 
 $(function(){
 	
@@ -62,6 +62,61 @@ $(function(){
 				break
 		}
 	})
+	//手机端touch事件
+	$('html').on('touchstart', function(e){
+		//e.preventDefault()
+		var touch = e.touches[0]
+		startX = touch.pageX
+		startY = touch.pageY
+	})
+	$('html').on('touchmove', function(e){
+		e.preventDefault()
+	})
+	$('html').on('touchend', function(e){
+		isPressDown = false
+		//e.preventDefault()
+		var touch = e.changedTouches[0]
+		var endX = touch.pageX
+		var endY = touch.pageY
+		var deg = Math.atan2(endY - startY, endX - startX)*180/Math.PI
+		var d = Math.sqrt((endX - startX) * (endX - startX) + (endY - startY) * (endY - startY))
+		
+		//console.log('start', startX, startY)
+		//console.log('end', endX, endY)
+		// console.log('deg', deg)
+		// console.log('d', d)
+		if(d > 40){
+			if( deg < 45 && deg > -45 ){//right
+				console.log('touch-right')
+				if(moveRight()){
+					afterMove()
+				}
+			}else if( deg < -45 && deg > -135 ){//up
+				console.log('touch-up')
+				if(moveUp()){
+					afterMove()
+				}
+			}else if( deg < 135 &&  deg > 45){//down
+				console.log('touch-down')
+				if(moveDown()){
+					afterMove()
+				}
+			}else{//left
+				console.log('touch-left')
+				if(moveLeft()){
+					afterMove()
+				}
+			}
+		}
+		startX = 0
+		startY = 0
+	})
+	$('#newgamebtn').on('touchmove', function(e){
+		e.preventDefault()
+	})
+	// $('header').click(function(){
+	// 	newgame()
+	// })
 })
 
 //开始游戏
@@ -173,7 +228,7 @@ function createOneNumber(){
 //向左移动
 function moveLeft(){
 	var now = new Date().getTime()
-	if(!canMoveLeft(board) || isPressDown || now - lastClickTime < 300){
+	if(!canMoveLeft(board) || isPressDown || now - lastClickTime < 200){
 		return false
 	}
 	lastClickTime = now
@@ -209,7 +264,7 @@ function moveLeft(){
 //向右移动
 function moveRight(){
 	var now = new Date().getTime()
-	if(!canMoveRight(board) || isPressDown || now - lastClickTime < 300){
+	if(!canMoveRight(board) || isPressDown || now - lastClickTime < 200){
 		return false
 	}
 	lastClickTime = now
@@ -245,7 +300,7 @@ function moveRight(){
 //向上移动
 function moveUp(){
 	var now = new Date().getTime()
-	if(!canMoveUp(board) || isPressDown || now - lastClickTime < 300){
+	if(!canMoveUp(board) || isPressDown || now - lastClickTime < 200){
 		return false
 	}
 	lastClickTime = now
@@ -283,7 +338,7 @@ function moveUp(){
 //向下移动
 function moveDown(){
 	var now = new Date().getTime()
-	if(!canMoveDown(board) || isPressDown || now - lastClickTime < 300){
+	if(!canMoveDown(board) || isPressDown || now - lastClickTime < 200){
 		return false
 	}
 	lastClickTime = now

@@ -2,6 +2,9 @@
 	margin: 0;
 	padding: 0;
 }
+html{
+	touch-action: none;
+}
 html, body{
 	font-family: Arial;
 	font-size: 14px;
@@ -23,7 +26,13 @@ a{
 }
 
 .wrapper{
+	display: flex;
+	flex-direction: column;
 	padding: 0 10px;
+	height: 100vh;
+}
+.container-wrap{
+	flex: 1;
 }
 header{
 	text-align: center;
@@ -82,7 +91,24 @@ header p{
 
 
 
-
+@media screen and (max-width: 540px){
+header h1{
+	font-weight: bold;
+	color: #000;
+	font-size: 32px;
+	margin: 10px 0 10px;
+}
+header p{
+	font-size: 16px;
+	margin: 10px 0;
+}
+#score{
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	text-align: right;
+}	
+}
 
 
 
