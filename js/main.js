@@ -11,26 +11,31 @@ $(function(){
 	newgame()
 	$(document).on('keydown', function(e){
 		//console.log(e.keyCode)
+		
 		switch(e.keyCode){
 			case 37://left
+				e.preventDefault()
 				//console.log('left')
 				if(moveLeft()){
 					afterMove()
 				}
 				break;
 			case 38://up
+				e.preventDefault()
 				//console.log('up')
 				if(moveUp()){
 					afterMove()
 				}
 				break;
 			case 39://right
+				e.preventDefault()
 				//console.log('right')
 				if(moveRight()){
 					afterMove()
 				}
 				break;
 			case 40://down
+				e.preventDefault()
 				//console.log('down')
 				if(moveDown()){
 					afterMove()
@@ -111,12 +116,10 @@ $(function(){
 		startX = 0
 		startY = 0
 	})
-	$('#newgamebtn').on('touchmove', function(e){
-		e.preventDefault()
-	})
-	// $('header').click(function(){
-	// 	newgame()
-	// })
+	window.history.pushState(null, null, document.URL);
+	window.addEventListener('popstate', function () { 
+		window.history.pushState(null, null, document.URL); 
+	});
 })
 
 //开始游戏
